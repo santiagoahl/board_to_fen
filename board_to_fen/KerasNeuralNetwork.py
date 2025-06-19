@@ -31,6 +31,9 @@ class KerasNeuralNetwork:
         print(f"accuracy:{accuracy}")
         print(f"loss:{loss}")
 
+    def load_model_from_weights(self, path):
+        self.model.load_weights(path)
+    
     def load_model(self, path):
         self.model = models.load_model(path)
     
@@ -41,4 +44,5 @@ class KerasNeuralNetwork:
             prediction = self.model.predict(image, verbose=0)
             index = np.argmax(prediction)
             self.predictions.append(self.CATEGORIES[index])
+        self.predictions = np.array(self.predictions)
         return self.predictions
