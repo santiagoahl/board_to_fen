@@ -16,9 +16,12 @@ import numpy as np
 
 os.sys.path.append("board_to_fen/KerasNeuralNetwork")
 from .KerasNeuralNetwork import KerasNeuralNetwork
-MODELS_DIR = "board_to_fen/saved_models/"
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR = os.path.join(CURRENT_DIR, "saved_models")
 PATH_TO_MODEL = os.path.join(MODELS_DIR, "november_model")
 PATH_TO_MODEL_WEIGHTS = os.path.join(MODELS_DIR, "november_model_weights.h5")
+# MODELS_DIR = "board_to_fen/saved_models/"
+# PATH_TO_MODEL_WEIGHTS = os.path.join(MODELS_DIR, "november_model_weights.h5")
 
 model = KerasNeuralNetwork()
 model.load_model_from_weights(path=PATH_TO_MODEL_WEIGHTS)
@@ -34,8 +37,8 @@ def get_fen_from_image_path(image_path, end_of_row='/', black_view=False) -> str
         Description
     end_of_row : str
         Indicate how to process end of chess row
-    black_biew : bool
-        Pass as False iff the board is set form the player with white chess pieces
+    black_view : bool
+        Set to True iff the board is viewed from Black's perspective.
     
     Returns:
         str: Predicted chess position in FEN notation
@@ -67,8 +70,9 @@ def get_fen_from_image(image, end_of_row='/', black_view=False) -> str:
         image Object 
     end_of_row : str
         Indicate how to process end of chess row
-    black_biew : bool
-        Pass as False iff the board is set form the player with white chess pieces
+    black_view : bool
+        Set to True if the board is viewed from Black's perspective.
+
     
     Returns:
         str: Predicted chess position in FEN notation
