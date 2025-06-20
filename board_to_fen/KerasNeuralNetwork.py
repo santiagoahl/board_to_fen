@@ -1,8 +1,7 @@
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # Ignore warnings (E.g. CUDA drivers, tf, etc.)
 from contextlib import redirect_stderr
-with redirect_stderr(open(os.devnull, "w")):
-    from keras import models, layers
+from keras import models, layers
 import numpy as np
 
 INPUT_SHAPE = (50, 50, 3)
